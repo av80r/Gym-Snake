@@ -82,9 +82,8 @@ class SnakeEnvRotate(gym.Env):
 
     def _convert_grid_to_bool(self, grid):
         s = grid == [255, 255, 255]
+        # Find the body positions
         b = (grid == [1, 0, 0])[:, :, 0]
-        print(np.shape(s))
-        print(np.shape(b))
         return np.dstack((s, b))
 
     def seed(self, x):
