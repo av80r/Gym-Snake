@@ -87,17 +87,17 @@ class Controller:
         self.grid.erase_snake_body(self.dead_snake)
         self.dead_snake = None
 
-    def get_state(self):
-        """
-        Creates a state from game parameters
-        """
-        snake = self.snake
-        if snake is None:
-            return None
-        head = snake.head
-        body = snake.body
-        food = self.grid.food_coord
-        return head, body, food
+    # def get_state(self):
+    #     """
+    #     Creates a state from game parameters
+    #     """
+    #     snake = self.snake
+    #     if snake is None:
+    #         return None
+    #     head = snake.head
+    #     body = snake.body
+    #     food = self.grid.food_coord
+    #     return head, body, food
 
     def step(self, direction):
         """
