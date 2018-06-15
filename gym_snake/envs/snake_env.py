@@ -58,6 +58,7 @@ class SnakeEnvRotate(gym.Env):
     def reset(self):
         self.controller = Controller(self.grid_size, self.unit_size, self.unit_gap, self.snake_size,
                                      random_init=self.random_init)
+        self.last_obs = self.controller.grid.grid
         return self._get_obs()
 
     def render(self, mode='human', close=False):
@@ -65,7 +66,7 @@ class SnakeEnvRotate(gym.Env):
             self.viewer = plt.imshow(self.last_obs)
         else:
             self.viewer.set_data(self.last_obs)
-        plt.pause(0.1)
+        plt.pause(0.001)
         plt.draw()
 
     def _rotate_action(self, action):
@@ -87,7 +88,8 @@ class SnakeEnvRotate(gym.Env):
         except AttributeError:
             return np.zeros([self.grid_size[0], self.grid_size[1], 3])
 
-    def _convert_grid_to_bool(self, grid):
+    @staticmethod
+    def _convert_grid_to_bool(grid):
         s = grid == [255, 255, 255]
         # Find the body positions
         b = (grid == [1, 0, 0])[:, :, 0]

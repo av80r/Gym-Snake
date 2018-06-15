@@ -116,4 +116,4 @@ class Controller:
         reward = (self.move_result())
 
         done = reward == -1 or self.grid.open_space < 1
-        return 0, reward, done, None
+        return self.grid.grid.copy(), reward, done, None
