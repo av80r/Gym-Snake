@@ -51,6 +51,7 @@ class SnakeEnvRotate(gym.Env):
         self.random_init = random_init
 
     def step(self, action):
+        action = self._rotate_action(action)
         self.last_obs, rewards, done, info = self.controller.step(action)
         return self._get_obs(), rewards, done, info
 
@@ -66,6 +67,12 @@ class SnakeEnvRotate(gym.Env):
             self.viewer.set_data(self.last_obs)
         plt.pause(0.1)
         plt.draw()
+
+    def _rotate_action(self, action):
+        try:
+            return (action - self.controller.snake.direction) % 4
+        except AttributeError:
+            return 0
 
     def _get_obs(self):
         grid = self._get_rotated_grid()
