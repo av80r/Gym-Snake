@@ -67,7 +67,7 @@ class SnakeEnvRotateVisual(gym.Env):
             self.viewer = plt.imshow(self.last_obs)
         else:
             self.viewer.set_data(self.last_obs)
-        plt.pause(0.001)
+        plt.pause(0.00001)
         plt.draw()
 
     def _rotate_action(self, action):
@@ -128,7 +128,7 @@ class SnakeEnvRotate(gym.Env):
             self.viewer = plt.imshow(self.last_obs)
         else:
             self.viewer.set_data(self.last_obs)
-        plt.pause(0.001)
+        plt.pause(0.00001)
         plt.draw()
 
     def _rotate_action(self, action):
